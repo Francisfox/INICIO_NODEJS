@@ -5,8 +5,7 @@ const app = require('express')()
 const server = require('http').createServer(app)
 const PORT = 3001
 
-//const io = require("socket.io")(server)
-//const io = require('Socket.io')(server,{cors: {origin:'https://3000-francisfox-inicionodejs-cbzu6jtzyy9.ws-us108.gitpod.io/'}})
+const io = require("socket.io")(server)
 
 app.listen(PORT, () => console.log(`servidor rodandando`));
 app.get('/',(req, res) => {
