@@ -1,5 +1,6 @@
 //npm init -y
 //npm isntall express --save
+//npm install socket.io
 
 const app = require('express')()
 const server = require('http').createServer(app)

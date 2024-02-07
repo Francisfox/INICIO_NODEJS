@@ -1,7 +1,11 @@
 //npm init -y
 //npm isntall express --save
 
-const app = require('express')();
+//para rodar a aplicação no servidor node entrar na pasta 
+//cd 01_proj_inicial
+//node .
+const app = require('express')()
+
 app.listen(3000, () => console.log(`servidor rodandando`));
 app.get('/',(req, res) => {
     res.send('Javascript and node francismar');
