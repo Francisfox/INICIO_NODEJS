@@ -11,7 +11,7 @@ const express = require("express");
 const app = express();
 
 const servidorHTTP = http.createServer(app);
-const io = require("socket.io")(servidorHTTP);
+const sockets = require("socket.io")(servidorHTTP);
 
 app.use(express.static("public"));
 
