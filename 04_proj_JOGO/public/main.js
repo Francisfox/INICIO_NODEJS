@@ -47,7 +47,60 @@ window.addEventListener('load',function(){
             this.image = document.getElementById('player')
             this.speed = 0;
             this.maxSpeed = 5;
+            this.gameFrame = 0;
+            this.staggerFrames = 5;
+            this.sprinteAnimations = [];
+            this.animationStates = [
+                {
+                    name: 'idle',
+                    frames: 7,
+                }
+                {
+                     name: 'jump',
+                    frames: 7,
+                }
+                {
+                    name: 'fall',
+                    frames: 9,
+                }
+                {
+                     name: 'run',
+                    frames: 9,
+                }
+                {
+                    name: 'dizzy',
+                    frames: 11,
+                }
+                {
+                     name: 'sit',
+                    frames: 5,
+                }
+                {
+                    name: 'roll',
+                    frames: 7,
+                }
+                {
+                     name: 'bite',
+                    frames: 7,
+                }
+                {
+                    name: 'ko',
+                    frames: 12,
+                }
+            ];
         }
+        animationStates.forEach((state, index) => {
+            let frames = {
+                loc: [],
+            }
+            for (let j = 0. j < state.frames; j++){
+                let positionX = j * this.width;
+                let positionY = index * this.height;
+                frames.loc.push({x: positionX, Y: positionY});
+            } 
+            sprinteAnimations[state.name] = frames;
+        });
+        console.log(animationStates);                        
         update(input){
             //horizontal moviment
             this.x += this.speed;
@@ -63,7 +116,11 @@ window.addEventListener('load',function(){
             else this.vy = 0;
         }
         draw(context){
-            context.drawImage(this.image,0,0,this.width,this.height,this.x,this.y,this.width,this.height );
+            let position = Math.floor(this.gameFrame/this.staggerFrames) % sprinteAnimations["idle"].loc.length;
+            let frameX = this.width * position;
+            let frameY = sprinteAnimations["idle"].loc.[position].y;
+            context.drawImage(this.image,frameX,frameY,this.width,this.height,this.x,this.y,this.width,this.height );
+            this.gameFrame++;
         }
         onGround(){
             return this.y >=this.game.height - this.height;
